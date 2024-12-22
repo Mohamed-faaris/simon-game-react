@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.playing{
+    background-color: azure;
+    scale: 1.05 ;
+}
+
+.BoxButton {
+    height: 100px;
+    width: 100px;
+    border: 10px ;
+    margin: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: scale 250ms ease,filter 250ms ease;
+}
+.BoxButton:hover {
+    scale: 1.05 ;
+    filter: brightness(70%);
+}
+.Container{
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.Glow{
+    background-color: lightgray !important;
+}
+
+.App{
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,14 +1,13 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 
-const BoxButton = forwardRef(({color}, ref) => {
+function BoxButton(props) {
     return (
         <div
             className="BoxButton"
-            style={{ backgroundColor: color}}
-            ref={ref}
+            style={{ backgroundColor: props.color || "black" }}
         >
         </div>
     );
-});
+}
 
 export default BoxButton;
