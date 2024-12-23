@@ -5,6 +5,7 @@ function BoxButton(props) {
         <div
             className="BoxButton"
             style={{ backgroundColor: props.color || "black" }}
+            onClick={()=>console.log(props.onClickEvent(props.index),props.index)}
         >
         </div>
     );
