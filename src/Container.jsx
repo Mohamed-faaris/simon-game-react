@@ -28,13 +28,9 @@ function Container(props, currentIndex = index) {
       await playSequence(currentIndex + 1);
   }
 
-  // useEffect(async () => {
-  //   await playSequence(0)
-  // }, [colors]);
-
   function resetGame() {
     round = 0
-    colors =[]
+    colors = []
     score = 0
     addColor()
   }
