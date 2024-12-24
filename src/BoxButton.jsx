@@ -4,7 +4,7 @@ const BoxButton = forwardRef((props,ref) => (
         <div
                 className={`BoxButton`}
                 style={{backgroundColor: props.color || "black"}}
-                ref={props.ref}
+                ref={ref}
                 onClick={() => {
                   console.log(props.onClickEvent(props.index), props.index);
                 }}
