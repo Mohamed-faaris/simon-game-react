@@ -37,26 +37,29 @@ function SimonGame(props, currentIndex = index) {
       await playSequence(currentIndex + 1);
   }
 
-  function resetGame() {
-    round.current = 0
-    colors.current = []
-    score.current = 0
-    addColor()
+  async function resetGame() {
+	  round.current = 0
+	  colors.current = []
+	  score.current = 0
+	  addColor()
+	  await props.changeColorEvent()
+	  await delay(50)
+	  playSequence(0)
   }
 
-  function check(i){
-    if(i === colors.current[round.current]){
-      round.current +=1 ;
-      if(round.current === colors.current.length){
-        addColor();
-        score.current += 1;
-        round.current = 0;
-	      playSequence(0);
-      }
-      return true;
-    }
-    resetGame();
-    return false;
+  async function check(i) {
+	  if (i === colors.current[round.current]) {
+		  round.current += 1;
+		  if (round.current === colors.current.length) {
+			  addColor();
+			  score.current += 1;
+			  round.current = 0;
+			  playSequence(0);
+		  }
+		  return true;
+	  }
+	  await resetGame();
+	  return false;
   }
 
   return (
@@ -70,7 +73,7 @@ function SimonGame(props, currentIndex = index) {
 	            <button onClick={()=>{
 											if(colors.current.length===0)addColor();
 					            playSequence(0);
-	            }}>+</button>
+	            }}>{colors.current.length===0?">":`${score.current}`}</button>
 	          </div>
 					</div>
     );
