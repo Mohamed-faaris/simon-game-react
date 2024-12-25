@@ -9,7 +9,7 @@ const BoxButton =(props) => (
                   console.log(props.onClickEvent(props.index), props.index);
                 }}
         >
-          {props.index}
+
         </div>
 );
 

@@ -21,20 +21,18 @@ function SimonGame(props, currentIndex = index) {
 	}
 	function flashOffColor(){
 		setStyle(initStyle);
-		//console.log(colors.current,colors.current[currentIndex],"off",performance.now());
 	}
 
 	function addColor(){
 		colors.current.push(random(4));
 		console.log(colors.current);
-		playSequence(0);
 	}
 
   async function playSequence(currentIndex){
 		flashOnColor(colors.current[currentIndex]);
     await delay(450);
 		flashOffColor();
-		await delay(1200)
+		await delay(200)
     if(currentIndex < score.current)
       await playSequence(currentIndex + 1);
   }
@@ -53,6 +51,7 @@ function SimonGame(props, currentIndex = index) {
         addColor();
         score.current += 1;
         round.current = 0;
+	      playSequence(0);
       }
       return true;
     }
@@ -61,14 +60,17 @@ function SimonGame(props, currentIndex = index) {
   }
 
   return (
-					<div>
-						<p>click play to start</p>
+					<div className={"SimonGame"}>
+						<p>{colors.current.length===0?"click play button to start":`score ${score.current}`}</p>
 	          <div className="Container" >
 	            <BoxButton  color="blue" onClickEvent ={check}  index={0} style={style[0]}/>
 	            <BoxButton  color="green" onClickEvent ={check}  index={1} style={style[1]}/>
 	            <BoxButton  color="red" onClickEvent ={check}  index={2} style={style[2]}/>
 	            <BoxButton  color="yellow" onClickEvent ={check}  index={3} style={style[3]}/>
-	            <button onClick={()=>(addColor())}>+</button>
+	            <button onClick={()=>{
+											if(colors.current.length===0)addColor();
+					            playSequence(0);
+	            }}>+</button>
 	          </div>
 					</div>
     );
