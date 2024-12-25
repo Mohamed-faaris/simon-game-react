@@ -3,46 +3,55 @@ import BoxButton from "./BoxButton.jsx";
 import {delay} from "./utils.jsx";
 
 function random(max) {
-    return Math.floor(Math.random() * max)+1;
+    return Math.floor(Math.random() * max);
 }
 
 function Container(props, currentIndex = index) {
-  let colors = []
-  let round = 0
-  let score = 0
-  let refs = [useRef(null),useRef(null),useRef(null),useRef(null)]
+  let colors= useRef([])
+  let round = useRef(0)
+  let score = useRef(0)
+	const flashStyle = {background: 'white'};
+	const initStyle = [{},{},{},{}]
+	const [style,setStyle] = useState(initStyle);
 
 
   function addColor(){
-    colors.push(random(4));
-    console.log(colors);
+    colors.current.push(random(4));
+		console.log(colors.current);
   }
+	function flashOnColor(colorIndex){
+		setStyle(initStyle.map((item, idx) => idx === colorIndex ? flashStyle : item))
+	}
+
+	function flashOffColor(){
+		setStyle(initStyle);
+	}
 
   async function playSequence(currentIndex){
-    refs[colors[currentIndex]].current.classList.add("Glow");
-    console.log(colors[currentIndex],"on");
-    await delay(50);
-    console.log(colors[currentIndex],"off");
-    refs[colors[currentIndex]].current.classList.remove("Glow");
-    if(currentIndex < score)
+    console.log(colors.current[currentIndex],"on");
+		flashOnColor(colors.current[currentIndex]);
+    await delay(700);
+		flashOffColor();
+    console.log(colors.current[currentIndex],"off");
+    if(currentIndex < score.current)
       await playSequence(currentIndex + 1);
   }
 
   function resetGame() {
-    round = 0
-    colors = []
-    score = 0
+    round.current = 0
+    colors.current = []
+    score.current = 0
     addColor()
   }
 
   function check(i){
-    if(i === colors[round]){
-      round +=1 ;
-      if(round === colors.length){
+    if(i === colors.current[round.current]){
+      round.current +=1 ;
+      if(round.current === colors.current.length){
         addColor();
-        score += 1;
+        score.current += 1;
         playSequence(0)
-        round = 0;
+        round.current = 0;
       }
       return true;
     }
@@ -52,10 +61,10 @@ function Container(props, currentIndex = index) {
 
   return (
           <div className="Container" >
-            <BoxButton  color="blue" onClickEvent ={check} ref ={refs[0]} index={1}/>
-            <BoxButton  color="green" onClickEvent ={check} ref ={refs[1]} index={2}/>
-            <BoxButton  color="red" onClickEvent ={check} ref ={refs[2]} index={3}/>
-            <BoxButton  color="yellow" onClickEvent ={check} ref ={refs[3]} index={4}/>
+            <BoxButton  color="blue" onClickEvent ={check}  index={0} style={style[0]}/>
+            <BoxButton  color="green" onClickEvent ={check}  index={1} style={style[1]}/>
+            <BoxButton  color="red" onClickEvent ={check}  index={2} style={style[2]}/>
+            <BoxButton  color="yellow" onClickEvent ={check}  index={3} style={style[3]}/>
             <button onClick={()=>(addColor())}>add</button>
         </div>
     );

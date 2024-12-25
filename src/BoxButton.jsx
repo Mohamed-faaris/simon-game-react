@@ -1,15 +1,16 @@
 import React, {forwardRef} from 'react';
 
-const BoxButton = forwardRef((props,ref) => (
+const BoxButton =(props) => (
         <div
                 className={`BoxButton`}
-                style={{backgroundColor: props.color || "black"}}
-                ref={props.ref}
+                style={{background: props.color || "black",...props.style}}
+                id={`boxButton-${props.index}`}
                 onClick={() => {
                   console.log(props.onClickEvent(props.index), props.index);
                 }}
         >
+          {props.index}
         </div>
-));
+);
 
 export default BoxButton;

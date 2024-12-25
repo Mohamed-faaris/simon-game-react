@@ -16,9 +16,9 @@
     margin: 5px;
     border-radius: 5px;
     display: inline-block;
-    transition: scale 250ms ease,filter 250ms ease;
+    transition: scale 250ms ease,filter 250ms ease,background-color 250ms;
 }
-.BoxButton:hover {
+.BoxButton:active {
     scale: 1.05 ;
     filter: brightness(70%);
 }
