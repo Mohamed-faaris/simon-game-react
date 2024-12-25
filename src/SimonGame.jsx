@@ -15,19 +15,19 @@ function SimonGame(props, currentIndex = index) {
 	const [style,setStyle] = useState(initStyle);
 
 
-  function addColor(){
-    colors.current.push(random(4));
-		console.log(colors.current);
-	  playSequence(0);
-  }
 	function flashOnColor(colorIndex){
 		setStyle(initStyle.map((item, idx) => idx === colorIndex ? flashStyle : item))
-		console.log(colors.current[currentIndex],"on",performance.now());
+		console.log(currentIndex,"on");
 	}
-
 	function flashOffColor(){
 		setStyle(initStyle);
-		console.log(colors.current[currentIndex],"off",performance.now());
+		//console.log(colors.current,colors.current[currentIndex],"off",performance.now());
+	}
+
+	function addColor(){
+		colors.current.push(random(4));
+		console.log(colors.current);
+		playSequence(0);
 	}
 
   async function playSequence(currentIndex){
