@@ -16,7 +16,7 @@
     margin: 5px;
     border-radius: 5px;
     display: inline-block;
-    transition: scale 250ms ease,filter 250ms ease,background-color 250ms;
+    transition: scale 250ms ease,filter 250ms ease,background-color 150ms;
 }
 .BoxButton:active {
     scale: 1.05 ;
@@ -27,10 +27,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    position: relative;
 }
 
 .Glow{
     background-color: lightgray !important;
+}
+p{
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .App{
@@ -38,4 +44,14 @@
     display: grid;
     align-items: center;
     justify-content: center;
+}
+button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
 }

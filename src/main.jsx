@@ -6,7 +6,6 @@ import BoxButton from "./BoxButton.jsx";
 createRoot(document.getElementById('root')).render(
   <StrictMode>
       <>
-          <p>app</p>
           <App/>
       </>
   </StrictMode>,

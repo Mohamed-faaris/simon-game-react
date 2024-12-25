@@ -1,11 +1,10 @@
 import './App.css'
-import Container from "./Container.jsx";
+import SimonGame from "./SimonGame.jsx";
 
 function App() {
   return (
       <div className="App">
-          <h1>Hello World!</h1>
-          <Container/>
+          <SimonGame/>
       </div>
   )
 }

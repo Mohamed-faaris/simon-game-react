@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, {useState, useRef } from 'react';
 import BoxButton from "./BoxButton.jsx";
 import {delay} from "./utils.jsx";
 
@@ -6,7 +6,7 @@ function random(max) {
     return Math.floor(Math.random() * max);
 }
 
-function Container(props, currentIndex = index) {
+function SimonGame(props, currentIndex = index) {
   let colors= useRef([])
   let round = useRef(0)
   let score = useRef(0)
@@ -18,21 +18,23 @@ function Container(props, currentIndex = index) {
   function addColor(){
     colors.current.push(random(4));
 		console.log(colors.current);
+	  playSequence(0);
   }
 	function flashOnColor(colorIndex){
 		setStyle(initStyle.map((item, idx) => idx === colorIndex ? flashStyle : item))
+		console.log(colors.current[currentIndex],"on",performance.now());
 	}
 
 	function flashOffColor(){
 		setStyle(initStyle);
+		console.log(colors.current[currentIndex],"off",performance.now());
 	}
 
   async function playSequence(currentIndex){
-    console.log(colors.current[currentIndex],"on");
 		flashOnColor(colors.current[currentIndex]);
-    await delay(700);
+    await delay(450);
 		flashOffColor();
-    console.log(colors.current[currentIndex],"off");
+		await delay(1200)
     if(currentIndex < score.current)
       await playSequence(currentIndex + 1);
   }
@@ -50,7 +52,6 @@ function Container(props, currentIndex = index) {
       if(round.current === colors.current.length){
         addColor();
         score.current += 1;
-        playSequence(0)
         round.current = 0;
       }
       return true;
@@ -60,14 +61,17 @@ function Container(props, currentIndex = index) {
   }
 
   return (
-          <div className="Container" >
-            <BoxButton  color="blue" onClickEvent ={check}  index={0} style={style[0]}/>
-            <BoxButton  color="green" onClickEvent ={check}  index={1} style={style[1]}/>
-            <BoxButton  color="red" onClickEvent ={check}  index={2} style={style[2]}/>
-            <BoxButton  color="yellow" onClickEvent ={check}  index={3} style={style[3]}/>
-            <button onClick={()=>(addColor())}>add</button>
-        </div>
+					<div>
+						<p>click play to start</p>
+	          <div className="Container" >
+	            <BoxButton  color="blue" onClickEvent ={check}  index={0} style={style[0]}/>
+	            <BoxButton  color="green" onClickEvent ={check}  index={1} style={style[1]}/>
+	            <BoxButton  color="red" onClickEvent ={check}  index={2} style={style[2]}/>
+	            <BoxButton  color="yellow" onClickEvent ={check}  index={3} style={style[3]}/>
+	            <button onClick={()=>(addColor())}>+</button>
+	          </div>
+					</div>
     );
 }
 
-export default Container;
+export default SimonGame;
