@@ -1,14 +1,16 @@
 import React from 'react';
 
-function BoxButton(props) {
-    return (
+const BoxButton =(props) => (
         <div
-            className="BoxButton"
-            style={{ backgroundColor: props.color || "black" }}
-            onClick={()=>console.log(props.onClickEvent(props.index),props.index)}
+                className={`BoxButton`}
+                style={{background: props.color || "black",...props.style}}
+                id={`boxButton-${props.index}`}
+                onClick={() => {
+                  console.log(props.onClickEvent(props.index), props.index);
+                }}
         >
+          {props.index}
         </div>
-    );
-}
+);
 
 export default BoxButton;
