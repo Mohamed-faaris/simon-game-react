@@ -1,6 +1,6 @@
 import React, {useState, useRef } from 'react';
 import BoxButton from "./BoxButton.jsx";
-import {delay} from "./utils.jsx";
+import {blueClick, delay, greenClick, redClick, yellowClick} from "./utils.jsx";
 
 function random(max) {
     return Math.floor(Math.random() * max);
@@ -17,7 +17,14 @@ function SimonGame(props, currentIndex = index) {
 
 	function flashOnColor(colorIndex){
 		setStyle(initStyle.map((item, idx) => idx === colorIndex ? flashStyle : item))
-		console.log(currentIndex,"on");
+		switch (colorIndex) {
+			case 0: blueClick.play(); break;
+			case 1: greenClick.play(); break;
+			case 2: redClick.play(); break;
+			case 3: yellowClick.play(); break;
+			default:
+				break;
+		}
 	}
 	function flashOffColor(){
 		setStyle(initStyle);
@@ -25,7 +32,6 @@ function SimonGame(props, currentIndex = index) {
 
 	function addColor(){
 		colors.current.push(random(4));
-		console.log(colors.current);
 	}
 
   async function playSequence(currentIndex){
