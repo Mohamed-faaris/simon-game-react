@@ -35,7 +35,7 @@
 }
 p{
     font-family: sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     text-align: center;
 }
 
@@ -44,6 +44,7 @@ p{
     display: grid;
     align-items: center;
     justify-content: center;
+    transition: background 150ms ease;
 }
 button{
     position: absolute;
@@ -54,4 +55,11 @@ button{
     width: 50px;
     border-radius: 50%;
     border: none;
+    background: #242424;
+    color : white;
+}
+.SimonGame{
+    background: cyan;
+    padding: 10px;
+    border-radius: 5%;
 }
