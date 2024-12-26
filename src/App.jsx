@@ -1,11 +1,21 @@
 import './App.css'
-import Container from "./Container.jsx";
+import SimonGame from "./SimonGame.jsx";
+import {useState} from "react";
+import {delay, wrongClick} from "./utils.jsx";
 
 function App() {
+  const [style, setStyle] = useState({});
+
+  async function flashRed(){
+    setStyle({backgroundColor: "red"});
+    wrongClick.play();
+    await delay(200)
+    setStyle({});
+  }
+
   return (
-      <div className="App">
-          <h1>Hello World!</h1>
-          <Container/>
+      <div className="App" style={style}>
+          <SimonGame changeColorEvent={flashRed}/>
       </div>
   )
 }
