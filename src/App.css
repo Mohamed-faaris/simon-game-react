@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color:white;
 }
 
 .playing{
@@ -44,6 +45,7 @@ p{
     display: grid;
     align-items: center;
     justify-content: center;
+    background: #242424;
     transition: background 150ms ease;
 }
 button{
@@ -59,7 +61,7 @@ button{
     color : white;
 }
 .SimonGame{
-    background: cyan;
     padding: 10px;
     border-radius: 5%;
+    background: #242424;
 }
